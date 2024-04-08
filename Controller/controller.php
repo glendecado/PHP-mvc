@@ -12,16 +12,27 @@ use mvc\User;
 
 class Controller
 {
-    static function insert()
+
+    private $m;
+    function __construct()
+    {
+        $this->m = new User;
+    }
+    function insert()
     {
         Request::dumpPost();
-        $m = new User;
-        $m->create([Request::post('email'), Request::post('username'), password_hash(Request::post('password'), PASSWORD_DEFAULT)]);
+
+        $this->m->create([Request::post('email'), Request::post('username'), password_hash(Request::post('password'), PASSWORD_DEFAULT)]);
     }
 
-    static function view()
+    function delete()
     {
-        include('./Views/index.php');
+
+        $this->m->delete('ID', Request::post('id'));
+    }
+    function view()
+    {
+        include('./Views/main.php');
     }
 }
 

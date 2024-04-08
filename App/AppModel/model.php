@@ -40,7 +40,9 @@ class Model
 
         $atributesStr = implode(', ', array_keys($this->attributes));
 
-        $stmt = $this->db->prepare("INSERT INTO $this->entity ($atributesStr) VALUES ($val)");
+        $sql = "INSERT INTO $this->entity ($atributesStr) VALUES ($val)";
+
+        $stmt = $this->db->prepare($sql);
 
         $i = 0;
         foreach ($this->attributes as $key => $value) {
@@ -51,6 +53,13 @@ class Model
                 $i++;
             }
         }
+        $stmt->execute();
+    }
+
+    function delete($deleteBy, $todelete)
+    {
+        $sql = "DELETE FROM $this->entity WHERE $deleteBy = $todelete";
+        $stmt = $this->db->prepare($sql);
         $stmt->execute();
     }
 }

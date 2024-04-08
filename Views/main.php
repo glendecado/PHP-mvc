@@ -20,6 +20,11 @@
         <input type="submit">
     </form>
 
+    <form action="/d" method='post'>
+        <input type="text" name="id" placeholder="Id">
+        <input type="submit">
+    </form>
+
 </body>
 
 </html>

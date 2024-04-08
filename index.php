@@ -9,10 +9,12 @@ use manage\Session;
 use manage\Request;
 use web\Routes;
 
+$controller = new Controller;
 
+Routes::add('/', [$controller, 'view']);
 
-Routes::add('/', [Controller::class, 'view']);
+Routes::add('/m', [$controller, 'insert']);
 
-Routes::add('/m', [Controller::class, 'insert']);
+Routes::add('/d', [$controller, 'delete']);
 
 Routes::start();

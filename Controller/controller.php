@@ -16,7 +16,7 @@ class Controller
     {
         Request::dumpPost();
         $m = new User;
-        $m->create([Request::post('email'), Request::post('username'), Request::post('password')]);
+        $m->create([Request::post('email'), Request::post('username'), password_hash(Request::post('password'), PASSWORD_DEFAULT)]);
     }
 
     static function view()

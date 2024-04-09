@@ -49,6 +49,6 @@ class Controller
         $view = $this->m->viewAll();
         $value = json_decode($view, true);
 
-        include('./Views/main.php');
+        include('./Views/index.php');
     }
 }

@@ -49,7 +49,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($value as $key) : ?>
+            <?php foreach ($data as $key) : ?>
                 <tr>
                     <td><?= $key['ID'] ?></td>
                     <td><?= $key['email'] ?></td>

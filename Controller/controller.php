@@ -29,10 +29,10 @@ class Controller
 
     function delete()
     {
-        echo "<script>alert('heey')</script>";
+
         $this->m->delete('ID', Request::post('id'));
 
-        sleep(10);
+
         header('location: /');
     }
 
@@ -40,15 +40,15 @@ class Controller
     {
         $search = $this->m->viewBy('ID', Request::get('id'));
 
-        $value = json_decode($search, true);
 
-        var_dump($value);
+
+        var_dump($search);
     }
     function view()
     {
-        $view = $this->m->viewAll();
-        $value = json_decode($view, true);
+        $data = $this->m->viewAll();
 
-        include('./Views/index.php');
+
+        include('./Views/main.php');
     }
 }

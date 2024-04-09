@@ -83,8 +83,8 @@ class Model
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $jsonResult = json_encode($result);
-        return $jsonResult;
+
+        return $result;
     }
 
     function viewAll()
@@ -93,8 +93,8 @@ class Model
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $jsonResult = json_encode($result);
-        return $jsonResult;
+
+        return $result;
     }
 }
 

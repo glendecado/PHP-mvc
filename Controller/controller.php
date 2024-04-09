@@ -32,6 +32,15 @@ class Controller
 
         $this->m->delete('ID', Request::post('id'));
     }
+
+    function search()
+    {
+        $search = $this->m->searchFor('ID', Request::get('id'));
+
+        $value = json_decode($search, true);
+
+        var_dump($value);
+    }
     function view()
     {
         include('./Views/main.php');

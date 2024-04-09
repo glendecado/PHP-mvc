@@ -79,7 +79,7 @@ class Model
 
     function searchFor($searchBy, $toSearch)
     {
-        $sql = "SELECT * $this->entity WHERE $searchBy = $toSearch";
+        $sql = "SELECT * FROM $this->entity WHERE $searchBy = $toSearch";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

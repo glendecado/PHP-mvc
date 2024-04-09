@@ -26,6 +26,11 @@
         <input type="submit">
     </form>
 
+    <form action="/search" method='get'>
+        <input type="text" name="id" placeholder="Id">
+        <button type="submit">search for ID</button>
+    </form>
+
 </body>
 
 </html>

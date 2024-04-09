@@ -18,4 +18,5 @@ Routes::add('/m', [$controller, 'insert']);
 
 Routes::add('/d', [$controller, 'delete']);
 
+Routes::add('/search' . Request::urlGet('id'), [$controller, 'search']);
 Routes::start();

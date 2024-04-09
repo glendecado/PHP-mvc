@@ -80,7 +80,8 @@ class Model
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        $jsonResult = json_encode($result);
+        return $jsonResult;
     }
 }
 

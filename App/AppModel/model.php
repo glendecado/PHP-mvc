@@ -4,6 +4,7 @@ namespace mvc;
 
 use PDO;
 use PDOException;
+use Exception;
 
 
 class Model
@@ -33,34 +34,48 @@ class Model
 
     function create($data)
     {
-        $values = array_map(function ($col) {
-            return ":$col ";
-        }, array_keys($this->attributes));
-        $val = implode(", ", $values);
+        try {
+            $values = array_map(function ($col) {
+                return ":$col ";
+            }, array_keys($this->attributes));
+            $val = implode(", ", $values);
 
-        $atributesStr = implode(', ', array_keys($this->attributes));
+            $atributesStr = implode(', ', array_keys($this->attributes));
 
-        $sql = "INSERT INTO $this->entity ($atributesStr) VALUES ($val)";
+            $sql = "INSERT INTO $this->entity ($atributesStr) VALUES ($val)";
 
-        $stmt = $this->db->prepare($sql);
+            $stmt = $this->db->prepare($sql);
 
-        $i = 0;
-        foreach ($this->attributes as $key => $value) {
-            if (strpos($value, 'PRIMARY KEY')) {
-                continue;
-            } else {
-                $stmt->bindValue(":$key", $data[$i]);
-                $i++;
+            $i = 0;
+            foreach ($this->attributes as $key => $value) {
+                if (strpos($value, 'PRIMARY KEY')) {
+                    continue;
+                } else {
+                    $stmt->bindValue(":$key", $data[$i]);
+                    $i++;
+                }
             }
+            $stmt->execute();
+        } catch (Exception $e) {
+
+            return 'Caught exception: ' . $e->getMessage() . "\n";
         }
-        $stmt->execute();
     }
 
     function delete($deleteBy, $todelete)
     {
-        $sql = "DELETE FROM $this->entity WHERE $deleteBy = $todelete";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
+        try {
+
+            $sql = "DELETE FROM $this->entity WHERE $deleteBy = $todelete";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+        } catch (Exception $e) {
+            return 'Caught exception: ' . $e->getMessage() . "\n";
+        }
+    }
+
+    function searchFor($searchBy, $toSearch)
+    {
     }
 }
 

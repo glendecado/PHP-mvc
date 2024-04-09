@@ -2,6 +2,8 @@
 
 namespace mvc;
 
+include(__DIR__ . '/../App/urlProtection.php');
+
 use mvc\Model;
 
 class User extends Model

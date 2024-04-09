@@ -77,12 +77,22 @@ class Model
         }
     }
 
-    function searchFor($searchBy, $toSearch)
+    function viewBy($searchBy, $toSearch)
     {
         $sql = "SELECT * FROM $this->entity WHERE $searchBy = $toSearch";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $jsonResult = json_encode($result);
+        return $jsonResult;
+    }
+
+    function viewAll()
+    {
+        $sql = "SELECT * FROM $this->entity";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $jsonResult = json_encode($result);
         return $jsonResult;
     }

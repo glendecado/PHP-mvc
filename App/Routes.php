@@ -2,6 +2,8 @@
 
 namespace web;
 
+include(__DIR__ . '/../App/urlProtection.php');
+
 class Routes
 {
     static $route = [];

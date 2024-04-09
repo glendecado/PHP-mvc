@@ -2,6 +2,9 @@
 
 namespace mvc;
 
+include(__DIR__ . '/../urlProtection.php');
+
+
 use PDO;
 use PDOException;
 use Exception;

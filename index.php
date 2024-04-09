@@ -2,6 +2,7 @@
 define('MY_APP', true);
 define("Database", 'sqlite:./Database/database.db');
 
+
 require_once('./App/require.php');
 
 use mvc\Controller;

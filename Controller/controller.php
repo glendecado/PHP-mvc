@@ -3,6 +3,8 @@
 
 namespace mvc;
 
+include(__DIR__ . '/../App/urlProtection.php');
+
 
 
 use manage\Request;
@@ -35,12 +37,3 @@ class Controller
         include('./Views/main.php');
     }
 }
-
-
-
-
-
-
-
-///////////////////////////////////////////////////
-!defined('MY_APP') ? header('location: ../') : '';

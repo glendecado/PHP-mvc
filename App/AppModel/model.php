@@ -96,6 +96,26 @@ class Model
 
         return $result;
     }
+
+    function update($data, $id)
+    {
+        $values = array_map(function ($col) {
+            return ":$col ";
+        }, array_keys($this->attributes));
+        $val = implode(", ", $values);
+
+        $atributesStr = implode(', ', array_keys($this->attributes));
+
+        $sql = $this->db->prepare("UPDATE  $this->entity SET $atributesStr WHERE :ID");
+        $stmt = $this->db->prepare($sql);
+        $i = 0;
+        foreach ($this->attributes as $key => $value) {
+
+            $stmt->bindValue(":$key", $data[$i]);
+            $i++;
+        }
+        $stmt->execute();
+    }
 }
 
 

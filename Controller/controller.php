@@ -44,11 +44,21 @@ class Controller
 
         var_dump($search);
     }
+
+    function update()
+    {
+        $this->m->update(
+            [Request::post('email'), Request::post('username'), password_hash(Request::post('password'), PASSWORD_DEFAULT)],
+            Request::post('ID')
+        );
+
+        header('location: /');
+    }
     function view()
     {
         $data = $this->m->viewAll();
 
 
-        include('./Views/main.php');
+        include('./Views/index.php');
     }
 }

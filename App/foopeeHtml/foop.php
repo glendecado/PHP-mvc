@@ -59,9 +59,9 @@ class pee
         return $this;
     }
 
-    function tfooter($end = "")
+    function tfoot($end = "")
     {
-        self::tags("tfooter", $end);
+        self::tags("tfoot", $end);
         return $this;
     }
 

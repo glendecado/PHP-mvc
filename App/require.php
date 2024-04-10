@@ -1,6 +1,6 @@
 <?php
 include(__DIR__ . '/../App/urlProtection.php');
-
+require_once 'App/foopeeHtml/foop.php';
 require_once 'App/Manage/sessions.php';
 require_once 'App/Manage/request.php';
 require_once 'App/Routes.php';

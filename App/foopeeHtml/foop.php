@@ -5,19 +5,47 @@ namespace foop;
 class pee
 {
     //tags
-    function tags($tags, $end)
+    private function tags($tags, $end)
     {
-        if ($end == "") {
-            echo "<$tags>\n";
-        } else if ($end == "-") {
+        if (strpos($end, ":") !== false) {
+            $parts = array_map('trim', explode(":", $end));
+            $i = 0;
+            $j = 0;
+            $attr = [];
+            $val = [];
+
+            foreach ($parts as $p) {
+                if ($i % 2 == 0) {
+                    $attr[] = $p;
+                } else {
+                    $val[] = $p;
+                }
+
+                $i++;
+            }
+            ////
             echo "<$tags ";
-        } else if ($end == ">") {
+            foreach ($attr as $a) {
+                echo $a . "=\"" . $val[$j] . "\"";
+                $j++;
+            }
             echo ">\n";
-        } else if ($end == "/") {
-            echo "</$tags>\n";
-        } else {
-            echo "<$tags> $end </$tags>\n";
+            ////
         }
+        //
+        else if ($end == "") {
+            echo "<$tags>\n";
+        }
+        //
+        else if ($end == "/") {
+            echo "</$tags>\n";
+        }
+        //
+        else {
+            echo "<$tags>$end</$tags>\n";
+        }
+
+
         return $this;
     }
     //button
@@ -71,6 +99,7 @@ class pee
         return $this;
     }
 
+    //$data, ["ID", "username", "email" "name"] everythin from database;
     function tdData($array, $values)
     {
 
@@ -94,70 +123,15 @@ class pee
         return $this;
     }
 
-
-    //attributes
-
-    function attributes($atributes, $value)
-    {
-
-        echo "$atributes=\"$value\"";
-        return $this;
-    }
-
-    function method($method)
-    {
-        self::attributes("method", $method);
-        return $this;
-    }
-
-    function action($action)
-    {
-        self::attributes("action", $action);
-        return $this;
-    }
-
-    function placeholder($placeholder)
-    {
-        self::attributes("placeholder", $placeholder);
-        return $this;
-    }
-
-    function name($name)
-    {
-        self::attributes("name", $name);
-        return $this;
-    }
-    function id($id)
-    {
-        self::attributes("id", $id);
-        return $this;
-    }
-    function class($class)
-    {
-        self::attributes("class", $class);
-        return $this;
-    }
-    function type($type)
-    {
-        self::attributes("type", $type);
-        return $this;
-    }
-
-    function value($value)
-    {
-        self::attributes("value", $value);
-        return $this;
-    }
-
-    function content($content)
-    {
-        echo $content . "\n";
-        return $this;
-    }
-
     function br()
     {
         echo '<br>' . "\n";
+        return $this;
+    }
+
+    function cont($end)
+    {
+        echo "$end \n";
         return $this;
     }
 }

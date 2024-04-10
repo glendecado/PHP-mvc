@@ -59,6 +59,6 @@ class Controller
         $data = $this->m->viewAll();
 
 
-        include('./Views/index.php');
+        include('./Views/exp.php');
     }
 }

@@ -14,7 +14,7 @@ $controller = new Controller;
 
 Routes::add('/', [$controller, 'view']);
 
-Routes::add('/m', [$controller, 'insert']);
+Routes::add('/insert', [$controller, 'insert']);
 
 Routes::add('/d', [$controller, 'delete']);
 

@@ -6,27 +6,55 @@ use foop\pee;
 
 $web = new pee();
 
+
+
+
 $web->table("class:userTable bg fgh gfhfgh dd : id : dsf dsfgfd fgfdg")->thead()->tr();
 
 $web->th("ID");
 $web->th("email");
 $web->th("Username");
 $web->th("password");
+$web->th("action");
 
 $web->tr("/")->thead("/");
 
-$web->tbody()->tr();
+$web->tbody();
 
 foreach ($data as $acc) :
     $web
+        ->tr()
         ->td($acc['ID'])
         ->td($acc['email'])
         ->td($acc['username'])
-        ->td($acc['password']);
+        ->td($acc['password'])
+        ->td()
+        ->form("method:post:action:/d")
+        ->button("name:id : value:" . $acc['ID'] . "")->cont("delete")->button("/")
+        ->form("/")
+        ->td("/")
+        ->tr();
 endforeach;
 
-$web->tr("/")->tbody("/");
-$web->table("/");
+$web->tbody("/");
+$web->table("/")->br();
+
+$web
+    ->form("method:post : action:/insert : type: text")
+    ->input("name:email : placeholder: email : type: text")
+    ->input("name:username : placeholder: username : type: text")
+    ->input("name:password : placeholder: password : type: text")
+    ->input("type: submit")
+    ->form("/");
+
+
+
+
+
+
+
+
+
 ?>
 
 <style>

@@ -26,7 +26,7 @@ class pee
             ////
             echo "<$tags";
             foreach ($attr as $a) {
-                echo " $a =\"" . $val[$j] . "\"";
+                echo " $a = \"" . $val[$j] . "\"";
                 $j++;
             }
             echo ">\n";
@@ -46,6 +46,26 @@ class pee
         }
 
 
+        return $this;
+    }
+
+    //css
+    function css($link)
+    {
+        echo "<link rel=\"stylesheet\" href=\"$link\">";
+        return $this;
+    }
+    //javascript
+    function js($link, $type = "application/javascript")
+    {
+        echo "<script src=\"$link\" type=\"$type\">";
+        return $this;
+    }
+
+
+    function div($end = "")
+    {
+        self::tags("div", $end);
         return $this;
     }
 
@@ -69,6 +89,11 @@ class pee
         return $this;
     }
 
+    function lablel($end = "")
+    {
+        self::tags("label", $end);
+        return $this;
+    }
     //table
 
     function table($end = "")

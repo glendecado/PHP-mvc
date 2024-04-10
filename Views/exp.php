@@ -6,7 +6,7 @@ use foop\pee;
 
 $web = new pee();
 
-$web->table("class:userTable")->thead()->tr();
+$web->table("class:userTable bg fgh gfhfgh dd : id : dsf dsfgfd fgfdg")->thead()->tr();
 
 $web->th("ID");
 $web->th("email");

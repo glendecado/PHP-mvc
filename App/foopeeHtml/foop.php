@@ -24,9 +24,9 @@ class pee
                 $i++;
             }
             ////
-            echo "<$tags ";
+            echo "<$tags";
             foreach ($attr as $a) {
-                echo $a . "=\"" . $val[$j] . "\"";
+                echo " $a =\"" . $val[$j] . "\"";
                 $j++;
             }
             echo ">\n";

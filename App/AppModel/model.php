@@ -25,12 +25,13 @@ class Model
         //connecting to pdo we define database in index.php
         $this->db = new PDO(Database);
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //checking if the table exist or not
-        $sql = '';
+      
+        //creating table if not exist
         foreach ($this->attributes as $key => $value) {
-            $sql .= "$key $value, ";
+            //put the key and the value of the attributes
+            $table[] = "$key $value";
         }
-        $sql = rtrim($sql, ', ');
+        $sql = implode(', ', $table);
         $query = "CREATE TABLE IF NOT EXISTS $this->entity ($sql)";
         $this->db->exec($query);
     }
@@ -38,27 +39,35 @@ class Model
     function create($data)
     {
         try {
-            $values = array_map(function ($col) {
-                return ":$col ";
-            }, array_keys($this->attributes));
-            $val = implode(", ", $values);
-
-            $atributesStr = implode(', ', array_keys($this->attributes));
-
-            $sql = "INSERT INTO $this->entity ($atributesStr) VALUES ($val)";
-
-            $stmt = $this->db->prepare($sql);
-
-            $i = 0;
-            foreach ($this->attributes as $key => $value) {
+            foreach($this->attributes as $key=>$value){
+                //checking if the value of attributes is primary key
                 if (strpos($value, 'PRIMARY KEY')) {
-                    continue;
+                //if true continue
+                   continue;
                 } else {
-                    $stmt->bindValue(":$key", $data[$i]);
-                    $i++;
-                }
+                //put all of the key ex.name in array
+                    $keys[] = $key;
+                    $val[] = ':' . $key; //for bindvalue in pdo
+                }        
             }
-            $stmt->execute();
+            $vals = implode(', ', $val); //convert to string
+
+            $atributesStr = implode(', ', $keys); //convert to string
+
+            $sql = "INSERT INTO $this->entity ($atributesStr) VALUES ($vals)";//query
+
+            $stmt = $this->db->prepare($sql);//prepare
+
+           
+
+            $count = count($keys);
+
+            for($i= 0; $i < $count; $i++){
+                $stmt->bindValue($val[$i], $data[$i]);//bind all values
+                //$val ex. :name  //$data ex. glen
+            }
+
+            $stmt->execute();//excute it    
         } catch (Exception $e) {
 
             return 'Caught exception: ' . $e->getMessage() . "\n";
@@ -120,6 +129,3 @@ class Model
 
 
 
-
-///////////////////////////////////////////////////
-/* !defined('MY_APP') ? header('location: ../') : ''; */

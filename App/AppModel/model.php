@@ -25,15 +25,7 @@ class Model
         //connecting to pdo we define database in index.php
         $this->db = new PDO(Database);
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      
-        //creating table if not exist
-        foreach ($this->attributes as $key => $value) {
-            //put the key and the value of the attributes
-            $table[] = "$key $value";
-        }
-        $sql = implode(', ', $table);
-        $query = "CREATE TABLE IF NOT EXISTS $this->entity ($sql)";
-        $this->db->exec($query);
+    
     }
 
     function create($data)

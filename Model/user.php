@@ -6,14 +6,9 @@ include(__DIR__ . '/../App/urlProtection.php');
 
 use mvc\Model;
 
-class User extends Model
+class user extends Model
 {
 
-    protected $entity = 'User';
-    protected $attributes = [
-        'ID' => 'INTEGER PRIMARY KEY',
-        'email' => 'text',
-        'username' => 'text',
-        'password' => 'text',
-    ];
+    protected $entity = 'user';
+    protected $attributes = ['ID'=>'INTEGER PRIMARY KEY', 'email'=>'text', 'Username'=>'text', 'password'=>'text'];
 }

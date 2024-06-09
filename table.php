@@ -16,7 +16,7 @@ $product = new Table(
 $user = new Table(
     'user',
     [
-        'ID' => 'INTEGER PRIMARY KEY',
+        'ID' => 'INTEGER PRIMARY KEY AUTO_INCREMENT',
         'email' => 'text',
         'Username' => 'text',
         'password' => 'text',

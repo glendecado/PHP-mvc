@@ -33,7 +33,7 @@ class Model
         try {
             foreach($this->attributes as $key=>$value){
                 //checking if the value of attributes is primary key
-                if (strpos($value, 'PRIMARY KEY')) {
+                if (strpos($value, 'AUTO_INCREMENT')) {
                 //if true continue
                    continue;
                 } else {

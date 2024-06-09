@@ -10,5 +10,5 @@ class user extends Model
 {
 
     protected $entity = 'user';
-    protected $attributes = ['ID'=>'INTEGER PRIMARY KEY', 'email'=>'text', 'Username'=>'text', 'password'=>'text'];
+    protected $attributes = ['ID'=>'INTEGER PRIMARY KEY AUTO_INCREMENT', 'email'=>'text', 'Username'=>'text', 'password'=>'text'];
 }
